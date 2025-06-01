@@ -13,19 +13,15 @@ return new class extends Migration
     {
         Schema::create('movie_details', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->json('images');
-            $table->string('genre');
             $table->string('cinema_name');
             $table->string('cinema_place');
-            $table->string('period_of_time');
+            $table->string('period_time');
             $table->string('show_day');
-            $table->string('first_time')->nullable();
-            $table->string('second_time')->nullable();
-            $table->string('third_time')->nullable();
-            $table->string('fourth_time')->nullable();
+            $table->json('time_list');
+            $table->unsignedBigInteger('movie_id');
             $table->timestamps();
+
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }
 

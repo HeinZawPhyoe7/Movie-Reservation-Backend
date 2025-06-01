@@ -45,4 +45,26 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function movie_details()
+    {
+        return $this->hasManyThrough(MovieDetail::class, Ticket::class, 'user_id', 'id', 'id', 'movie_detail_id');
+    }
+
+    public function movies()
+    {
+        return $this->hasManyThrough(
+            Movie::class,
+            Ticket::class,
+            'user_id',
+            'id',
+            'id',
+            'movie_id'
+        );
+    }
 }
