@@ -42,4 +42,18 @@ class MovieDetailController extends Controller
             'message' => 'success'
         ], 201);
     }
+
+    public function show($movie_id)
+    {
+        $movieDetails = MovieDetail::where('movie_id', $movie_id)->get();
+
+        if ($movieDetails->isEmpty()) {
+            return response()->json(['message' => 'No movie details found for this movie_id.'], 404);
+        }
+
+        return response()->json([
+            'movie_details' => $movieDetails,
+            'message' => 'success'
+        ]);
+    }
 }

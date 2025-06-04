@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('period_time');
             $table->string('show_day');
             $table->json('time_list');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('movie_id');
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }

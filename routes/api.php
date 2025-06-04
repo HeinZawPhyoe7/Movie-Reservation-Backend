@@ -16,4 +16,5 @@ Route::group([
     //Movie Details
     Route::post('/admin/movie/detail/store', [MovieDetailController::class, 'movie_detail_store'])->name('movie_detail_store');
     Route::get('/movie/detail/getall', [MovieDetailController::class, 'movie_detail_getall'])->name('movie_detail_getall');
+    Route::get('/movie/detail/show/{movie_id}', [MovieDetailController::class, 'show'])->name('movie_detail_show');
 });
